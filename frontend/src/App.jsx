@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import Login from './Login';
+import Register from './Register';  
 import { Button, Modal } from "flowbite-react";
-import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+
 
 const App = () => {
   const [openModal, setOpenModal] = useState(false);
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Navbar */}
       <Navbar fluid rounded className="bg-white shadow-lg">
         <Navbar.Brand href="#">
           <img
-            src="/mireille.JPG"
+            src="/logo.webp"
             className="mr-3 h-8 sm:h-12 rounded-full"
             alt="Logo Gestion de Projet"
           />
@@ -26,13 +30,13 @@ const App = () => {
             label={
               <Avatar
                 alt="User settings"
-                img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                img="/hary.JPG"
                 rounded
               />
             }
           >
             <Dropdown.Header>
-              <span className="block text-sm">Bonnie Green</span>
+              <span className="block text-sm">Hary Lala Rabenamana</span>
               <span className="block truncate text-sm font-medium">hary@gmail.com</span>
             </Dropdown.Header>
             <Dropdown.Item>Tableau de bord</Dropdown.Item>
@@ -70,7 +74,7 @@ const App = () => {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => setOpenModal(false)}>OK</Button>
+            <Button onClick={() => setOpenModal(false)}>OK</Button> 
           </Modal.Footer>
         </Modal>
       </Navbar>
@@ -100,7 +104,7 @@ const App = () => {
           <p className="text-sm">&copy; 2024 Gestion de Projet. Tous droits réservés.</p>
         </div>  
       </footer>
-    </div>
+    </div>  
   );
 };
 
