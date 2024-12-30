@@ -46,6 +46,11 @@ const Register = () => {
     }
   };
 
+  const handleGoogleSignUp = () => {
+    window.location.href = 'http://localhost:5000/api/users/auth/google';
+  };
+
+
   return (
     <div className="w-full h-screen flex items-center justify-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
       <div className="w-[90%] max-w-sm md:max-w-md lg:max-w-md p-5 bg-gray-900 flex-col flex items-center gap-3 rounded-xl shadow-lg">
@@ -133,7 +138,7 @@ const Register = () => {
         </div>
 
         <div className="w-full flex items-center justify-evenly md:justify-between gap-2">
-          <div className="p-2 md:px-6 lg:px-10 bg-slate-700 cursor-pointer rounded-xl hover:bg-slate-800">
+          <div className="p-2 md:px-6 lg:px-10 bg-slate-700 cursor-pointer rounded-xl hover:bg-slate-800" onClick={handleGoogleSignUp}>
             <FcGoogle className="text-lg md:text-xl" />
           </div>
         </div>

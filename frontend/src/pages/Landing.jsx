@@ -18,30 +18,7 @@ const Landing = () => {
                 Gestion de Projet
               </span>
             </Navbar.Brand>
-            <div className="flex md:order-2">
-              <Dropdown
-                arrowIcon={false}
-                inline
-                label={
-                  <Avatar
-                    alt="User settings"
-                    img="/hary.JPG"
-                    rounded
-                  />
-                }
-              >
-                <Dropdown.Header>
-                  <span className="block text-sm">Hary Lala Rabenamana</span>
-                  <span className="block truncate text-sm font-medium">hary@gmail.com</span>
-                </Dropdown.Header>
-                <Dropdown.Item>Tableau de bord</Dropdown.Item>
-                <Dropdown.Item>Paramètres</Dropdown.Item>
-                <Dropdown.Item>Earnings</Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item>Se deconnecter</Dropdown.Item>
-              </Dropdown>
-              <Navbar.Toggle />
-            </div>
+            
             <Navbar.Collapse>
               <Navbar.Link href="#" active>
                 Accueil

@@ -37,6 +37,10 @@ function Login() {
     }
   };
 
+  const handleGoogleSignUp = () => {
+    window.location.href = 'http://localhost:5000/api/users/auth/google';
+  };
+
   return (
     <div className="min-h-screen flex justify-center items-center relative bg-gradient-to-b from-purple-800 to-purple-900">
       {/* Background Image */}
@@ -86,14 +90,12 @@ function Login() {
           <div className="w-2/5 h-[2px] bg-gray-800"></div>
         </div>
         <div className="mt-4 flex justify-center space-x-4">
-          <BsApple className="text-2xl text-white cursor-pointer" />
-          <FcGoogle className="text-2xl cursor-pointer" />
-          <FaTwitter className="text-2xl text-white cursor-pointer" />
+          <FcGoogle className="text-2xl cursor-pointer" onClick={handleGoogleSignUp}/>
         </div>
         <div className="mt-4 text-center">
           <span className="text-white">Pas de compte ? </span>
           <Link to="/register" className="text-purple-400 hover:underline">
-            S'inscrire
+            S'ins ire
           </Link>
         </div>
       </div>

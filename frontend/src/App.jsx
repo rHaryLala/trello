@@ -5,6 +5,8 @@ import Register from './pages/Register';
 import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './ProtectedRoute';
+import Profile from './pages/Profile';
+import AddProject from './components/AddProject';
 
 const App = () => { 
   return (
@@ -16,6 +18,16 @@ const App = () => {
         <Route path="/dashboard" element={
           <ProtectedRoute>
             <Dashboard />
+          </ProtectedRoute>  } 
+        />
+        <Route path="/profile" element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>  } 
+        />
+         <Route path="/add-project" element={
+          <ProtectedRoute>
+            <AddProject />
           </ProtectedRoute>  } 
         />
       </Routes>
