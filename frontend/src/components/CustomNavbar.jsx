@@ -109,7 +109,7 @@ const CustomNavbar = () => {
         </div>
       </Navbar>
 
-      <Modal show={isModalOpen} onClose={closeModal} className=''>
+      <Modal show={isModalOpen} onClose={closeModal}>
         <Modal.Header>Se Deconnecter ?</Modal.Header>
         <Modal.Body>
           <p>Voulez-vous vraiment quitter la session ?</p>

@@ -1,12 +1,14 @@
-import { BsApple } from "react-icons/bs";
-import { FaTwitter } from "react-icons/fa";
+
 import { FcGoogle } from "react-icons/fc";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import React, { useState } from "react";
+import axios from 'axios';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -41,6 +43,10 @@ function Login() {
     window.location.href = 'http://localhost:5000/api/users/auth/google';
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className="min-h-screen flex justify-center items-center relative bg-gradient-to-b from-purple-800 to-purple-900">
       {/* Background Image */}
@@ -70,13 +76,18 @@ function Login() {
           <div className="mb-4 relative">
             <input
               className="w-full p-2 rounded-lg bg-white bg-opacity-20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-purple-400"
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               id="password"
               placeholder="Mot de passe"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <i className="absolute right-3 top-2 text-white font-normal not-italic">🔒</i>
+            <i
+              className="absolute right-4 top-3 text-gray-700 cursor-pointer"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </i>
           </div>
           <button className="w-full p-2 rounded-lg bg-purple-600 text-white font-semibold hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400">
             Se connecter
@@ -95,7 +106,7 @@ function Login() {
         <div className="mt-4 text-center">
           <span className="text-white">Pas de compte ? </span>
           <Link to="/register" className="text-purple-400 hover:underline">
-            S'ins ire
+            S'inscrire
           </Link>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { FcGoogle } from "react-icons/fc";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -103,9 +104,9 @@ const Register = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
             {showPassword ? (
-              <i className="absolute right-5 cursor-pointer text-white" onClick={togglePasswordView}>👁️</i>
+              <i className="absolute right-5 cursor-pointer text-white" onClick={togglePasswordView}>{showPassword ? <FaEyeSlash /> : <FaEye />}</i>
             ) : (
-              <i className="absolute right-5 cursor-pointer text-white" onClick={togglePasswordView}>👁️</i>
+              <i className="absolute right-5 cursor-pointer text-white" onClick={togglePasswordView}>{showPassword ? <FaEyeSlash /> : <FaEye />}</i>
             )}
           </div>
 
@@ -118,9 +119,9 @@ const Register = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
             {showConfirmPassword ? (
-              <i className="absolute right-5 cursor-pointer text-white" onClick={toggleConfirmPasswordView}>👁️</i>
+              <i className="absolute right-5 cursor-pointer text-white" onClick={toggleConfirmPasswordView}>{showConfirmPassword ? <FaEyeSlash /> : <FaEye />}</i>
             ) : (
-              <i className="absolute right-5 cursor-pointer text-white" onClick={toggleConfirmPasswordView}>👁️</i>
+              <i className="absolute right-5 cursor-pointer text-white" onClick={toggleConfirmPasswordView}>{showConfirmPassword ? <FaEyeSlash /> : <FaEye />}</i>
             )}
           </div>
 
