@@ -2,6 +2,8 @@ import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [firstName, setFirstName] = useState('');
@@ -20,7 +22,7 @@ const Register = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("Les mots de passe ne correspondent pas");
+      toast.error("Les mots de passe ne correspondent pas");
       return;
     }
 
@@ -37,13 +39,18 @@ const Register = () => {
 
       if (response.ok) {
         // Rediriger vers la page de connexion après une inscription réussie
-        navigate('/login');
+        toast.success("Inscription réussie !", {
+          autoClose: 2000,
+          onClose: () => navigate('/login')
+        });
       } else {
-        alert(data.message); // Afficher un message d'erreur
+        toast.error(data.message); 
+        console.log(data.message)// Afficher un message d'erreur
       }
     } catch (error) {
       console.error('Error:', error);
       alert('Une erreur est survenue. Veuillez réessayer.');
+      toast.error('Une erreur est survenue. Veuillez réessayer.');
     }
   };
 
@@ -57,12 +64,7 @@ const Register = () => {
       <div className="w-[90%] max-w-sm md:max-w-md lg:max-w-md p-5 bg-gray-900 flex-col flex items-center gap-3 rounded-xl shadow-lg">
         <img src="/logo.webp" alt="logo" className="w-12 md:w-14 rounded-full" />
         <h1 className="text-lg md:text-xl font-semibold text-white">Créer un compte</h1>
-        <p className="text-xs md:text-sm text-gray-500 text-center">
-          Vous avez déjà un compte ?  
-          <Link to="/login">
-            <span className="text-white"> Connexion</span>
-          </Link>
-        </p>
+        
 
         <form onSubmit={handleSubmit} className="w-full flex flex-col gap-3">
           <div className="w-full flex items-center gap-2 bg-gray-800 p-2 rounded-xl">
@@ -130,6 +132,8 @@ const Register = () => {
           </button>
         </form>
 
+
+        <ToastContainer />
         <div className="relative w-full flex items-center justify-center py-3">
           <div className="w-2/5 h-[2px] bg-gray-800"></div>
           <h3 className="font-lora text-xs md:text-sm px-4 text-gray-500">
@@ -137,6 +141,13 @@ const Register = () => {
           </h3>
           <div className="w-2/5 h-[2px] bg-gray-800"></div>
         </div>
+
+        <p className="text-xs md:text-sm text-gray-500 text-center">
+          Vous avez déjà un compte ?  
+          <Link to="/login">
+            <span className="text-white"> Connexion</span>
+          </Link>
+        </p>
 
         <div className="w-full flex items-center justify-evenly md:justify-between gap-2">
           <div className="p-2 md:px-6 lg:px-10 bg-slate-700 cursor-pointer rounded-xl hover:bg-slate-800" onClick={handleGoogleSignUp}>

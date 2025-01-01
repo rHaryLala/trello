@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import { toast, ToastContainer } from 'react-toastify';
 import axios from 'axios';
 
 function Login() {
@@ -110,6 +111,7 @@ function Login() {
           </Link>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

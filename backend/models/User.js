@@ -2,16 +2,16 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
-  googleId: { type: String },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  password: { 
-    type: String,
-    required: function() {
-      return !this.googleId; // Password is required if googleId is not present
-    }
-  },
+  password: { type: String, required: true },
+  plainPassword: { type: String, required: true },
+  phone: { type: String },
+  address: { type: String },
+  role: { type: String, enum: ['Admin', 'Collaborateur', 'Utilisateur'], default: 'Utilisateur' },
+  projects: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Project' }],
+  tickets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ticket' }],
   profilePhoto: { type: String }
 });
 

@@ -1,6 +1,12 @@
 {
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@shadcn/ui": "^0.0.4",
     "jwt-decode": "^4.0.0",
-    "react-beautiful-dnd": "^13.1.1"
+    "lucide-react": "^0.469.0",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-redux": "^9.2.0",
+    "react-toastify": "^11.0.2",
+    "redux": "^5.0.1"
   }
 }

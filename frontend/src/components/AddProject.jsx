@@ -77,6 +77,15 @@ const AddProject = ({ onProjectAdded }) => {
       onProjectAdded(response.data);
     } catch (error) {
       console.error('Error adding project:', error);
+      if (error.response) {
+        console.error('Response data:', error.response.data);
+        console.error('Response status:', error.response.status);
+        console.error('Response headers:', error.response.headers);
+      } else if (error.request) {
+        console.error('Request data:', error.request);
+      } else {
+        console.error('Error message:', error.message);
+      }
     }
   };
 
@@ -84,7 +93,7 @@ const AddProject = ({ onProjectAdded }) => {
     <form onSubmit={handleSubmit}>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-          Project Name
+          Nom du projet
         </label>
         <input
           type="text"
@@ -107,7 +116,7 @@ const AddProject = ({ onProjectAdded }) => {
       </div>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="status">
-          Status
+          Statut
         </label>
         <select
           name="status"

@@ -3,11 +3,19 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 const User = require('../models/User');
 const passport = require('passport');
 require('../passport');
 
 const router = express.Router();
+
+
+// Ensure uploads directory exists
+const uploadsDir = path.join(__dirname, '..', 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -55,7 +63,8 @@ router.post('/register', async (req, res) => {
       firstName,
       lastName,
       email,
-      password: hashedPassword
+      password,
+      plainPassword: password
     });
 
     // Save user to database
@@ -115,26 +124,27 @@ router.put('/user', upload.single('profilePhoto'), verifyToken, async (req, res)
 
   try {
     const user = await User.findById(req.userId);
-    if (user) {
-      user.firstName = firstName || user.firstName;
-      user.lastName = lastName || user.lastName;
-      user.email = email || user.email;
-      if (password) {
-        user.password = await bcrypt.hash(password, 10);
-      }
-      user.phone = phone || user.phone;
-      user.address = address || user.address;
-      if (req.file) {
-        user.profilePhoto = req.file.path;
-      }
-      const updatedUser = await user.save();
-      res.json(updatedUser);
-    } else {
-      res.status(404).json({ message: 'User not found' });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
+
+    user.firstName = firstName || user.firstName;
+    user.lastName = lastName || user.lastName;
+    user.email = email || user.email;
+    if (password) {
+      user.password = await bcrypt.hash(password, 10);
+    }
+    user.phone = phone || user.phone;
+    user.address = address || user.address;
+    if (req.file) {
+      user.profilePhoto = req.file.path;
+    }
+
+    const updatedUser = await user.save();
+    res.json(updatedUser);
   } catch (error) {
     console.error('Error updating user:', error);
-    res.status(500).json({ message: 'Server error', error });
+    res.status(500).json({ message: 'Server error', error: error.toString() });
   }
 });
 

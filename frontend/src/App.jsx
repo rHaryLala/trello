@@ -7,11 +7,22 @@ import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './ProtectedRoute';
 import Profile from './pages/Profile';
 import AddProject from './components/AddProject';
+import DashboardTest from './pages/DashboardTest';
+import { Provider } from 'react-redux';
+import store from './redux/store'; // Adjust the path to your store
+import Sidebar from './components/Sidebar';
 
 const App = () => { 
   return (
     <BrowserRouter>
       <Routes>
+        //route test
+        <Route path="/test" element={  
+          <Provider store={store}>
+            <DashboardTest />
+          </Provider>} 
+        />
+
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -28,6 +39,11 @@ const App = () => {
          <Route path="/add-project" element={
           <ProtectedRoute>
             <AddProject />
+          </ProtectedRoute>  } 
+        />
+         <Route path="/sidebar" element={
+          <ProtectedRoute>
+            <Sidebar />
           </ProtectedRoute>  } 
         />
       </Routes>

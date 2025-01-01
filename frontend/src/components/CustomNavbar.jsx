@@ -52,6 +52,10 @@ const CustomNavbar = () => {
     navigate('/login');
   };
 
+  const goToDashboard = () => {
+    navigate('/dashboard');
+  };
+
   const goToProfile = () => {
     navigate('/profile');
   };
@@ -101,7 +105,7 @@ const CustomNavbar = () => {
               <span className="block text-sm">{`${user.firstName} ${user.lastName}`}</span>
               <span className="block truncate text-sm font-medium">{user.email}</span>
             </Dropdown.Header>
-            <Dropdown.Item >Nouveau projet</Dropdown.Item>
+            <Dropdown.Item onClick={goToDashboard}>Tableau</Dropdown.Item>
             <Dropdown.Item onClick={goToProfile}>Profil</Dropdown.Item>
             <Dropdown.Item>Paramètres</Dropdown.Item>
             <Dropdown.Item onClick={openModal}>Déconnexion</Dropdown.Item>
