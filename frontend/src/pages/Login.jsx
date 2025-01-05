@@ -1,10 +1,10 @@
-
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { toast, ToastContainer } from 'react-toastify';
 import axios from 'axios';
+import { motion } from "framer-motion";
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -28,15 +28,14 @@ function Login() {
 
       if (response.ok) {
         console.log('Login successful:', data);
-        // Stocker le token dans le localStorage ou gérer l'authentification comme vous le souhaitez
         localStorage.setItem('token', data.token);
-        navigate('/dashboard'); // Rediriger vers le tableau de bord ou une autre page
+        navigate('/dashboard');
       } else {
-        alert(data.message); // Afficher un message d'erreur
+        toast.error(data.message);
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Une erreur est survenue. Veuillez réessayer.');
+      toast.error('Une erreur est survenue. Veuillez réessayer.');
     }
   };
 
@@ -46,6 +45,31 @@ function Login() {
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+        when: "beforeChildren",
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { type: "spring", stiffness: 100, damping: 10 }
+    }
   };
 
   return (
@@ -60,10 +84,20 @@ function Login() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70"></div>
 
       {/* Login Card */}
-      <div className="relative z-10 bg-white bg-opacity-10 rounded-xl shadow-xl p-4 max-w-xs w-full backdrop-blur-lg border border-white border-opacity-20">
-        <h2 className="text-center text-2xl font-bold text-white mb-4">Connexion</h2>
+      <motion.div 
+        className="relative z-10 bg-white bg-opacity-10 rounded-xl shadow-xl p-4 max-w-xs w-full backdrop-blur-lg border border-white border-opacity-20"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.h2 
+          className="text-center text-2xl font-bold text-white mb-4"
+          variants={itemVariants}
+        >
+          Connexion
+        </motion.h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4 relative">
+          <motion.div className="mb-4 relative" variants={itemVariants}>
             <input
               className="w-full p-2 rounded-lg bg-white bg-opacity-20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-purple-400"
               type="email"
@@ -73,8 +107,8 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
             />
             <i className="absolute right-3 top-2 text-white font-normal not-italic">📧</i>
-          </div>
-          <div className="mb-4 relative">
+          </motion.div>
+          <motion.div className="mb-4 relative" variants={itemVariants}>
             <input
               className="w-full p-2 rounded-lg bg-white bg-opacity-20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-purple-400"
               type={showPassword ? 'text' : 'password'}
@@ -89,31 +123,52 @@ function Login() {
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </i>
-          </div>
-          <button className="w-full p-2 rounded-lg bg-purple-600 text-white font-semibold hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400">
+          </motion.div>
+          <motion.button 
+            className="w-full p-2 rounded-lg bg-purple-600 text-white font-semibold hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400"
+            variants={itemVariants}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             Se connecter
-          </button>
+          </motion.button>
         </form>
-        <div className="relative w-full flex items-center justify-center py-3">
+        <motion.div 
+          className="relative w-full flex items-center justify-center py-3"
+          variants={itemVariants}
+        >
           <div className="w-2/5 h-[2px] bg-gray-800"></div>
           <h3 className="font-lora text-xs md:text-sm px-4 text-white">
             Ou
           </h3>
           <div className="w-2/5 h-[2px] bg-gray-800"></div>
-        </div>
-        <div className="mt-4 flex justify-center space-x-4">
-          <FcGoogle className="text-2xl cursor-pointer" onClick={handleGoogleSignUp}/>
-        </div>
-        <div className="mt-4 text-center">
+        </motion.div>
+        <motion.div 
+          className="mt-4 flex justify-center space-x-4"
+          variants={itemVariants}
+        >
+          <motion.div
+            whileHover={{ scale: 1.2, rotate: 360 }}
+            whileTap={{ scale: 0.8 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+          >
+            <FcGoogle className="text-2xl cursor-pointer" onClick={handleGoogleSignUp}/>
+          </motion.div>
+        </motion.div>
+        <motion.div 
+          className="mt-4 text-center"
+          variants={itemVariants}
+        >
           <span className="text-white">Pas de compte ? </span>
           <Link to="/register" className="text-purple-400 hover:underline">
             S'inscrire
           </Link>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       <ToastContainer />
     </div>
   );
 }
 
 export default Login;
+
