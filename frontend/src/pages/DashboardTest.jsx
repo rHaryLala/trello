@@ -101,7 +101,7 @@ const Dashboard = () => {
             </Button>
           </div>
           <Modal show={isAddModalOpen} onClose={() => setIsAddModalOpen(false)}>
-            <Modal.Header>Ajouter Projet</Modal.Header>
+            <Modal.Header>Ajouter un Projet</Modal.Header>
             <Modal.Body>
               <AddProject onProjectAdded={handleProjectAdded} />
             </Modal.Body>
@@ -137,7 +137,7 @@ const Dashboard = () => {
       </div>
 
       <Modal show={isAddCollaboratorModalOpen} onClose={() => setIsAddCollaboratorModalOpen(false)}>
-        <Modal.Header>Ajouter Collaborateur</Modal.Header>
+        <Modal.Header>Ajouter un Collaborateur</Modal.Header>
         <Modal.Body>
           <AddCollaborator 
             onCollaboratorAdded={handleCollaboratorAdded} 
