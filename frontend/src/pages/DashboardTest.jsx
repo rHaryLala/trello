@@ -7,6 +7,8 @@ import AddCollaborator from '../components/AddCollaborator';
 import axios from 'axios';
 import { Modal, Button, Card } from 'flowbite-react';
 import { PlusIcon, PencilIcon, TrashIcon, UserPlusIcon } from '@heroicons/react/24/solid';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Sidebar from '../components/Sidebar';
 
 const Dashboard = () => {
@@ -34,6 +36,7 @@ const Dashboard = () => {
         setProjects(response.data);
       } catch (error) {
         console.error('Error fetching projects:', error);
+        toast.error('Erreur en récupérant les projets');
       }
     };
 
@@ -81,6 +84,7 @@ const Dashboard = () => {
       setIsDeleteModalOpen(false);
     } catch (error) {
       console.error('Error deleting project:', error);
+      toast.error('Erreur en supprimant le projet');
     }
   };
 
@@ -161,6 +165,8 @@ const Dashboard = () => {
         onClose={() => setIsDeleteModalOpen(false)}
         onDelete={handleProjectDelete}
       />
+
+      <ToastContainer />
     </div>
   );
 };
