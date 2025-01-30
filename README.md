@@ -30,7 +30,6 @@ A full-stack Trello clone built with modern web technologies. This project imple
   - MongoDB
 
 - **Authentication**
-  - NextAuth.js
   - OAuth 2.0
 
 ## 📋 Prerequisites
