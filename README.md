@@ -20,9 +20,8 @@ A full-stack Trello clone built with modern web technologies. This project imple
 
 - **Frontend**
   - React
-  - TypeScript
+  - JavaScript
   - Tailwind CSS
-  - shadcn/ui
   - React Beautiful DND
 
 - **Backend**
@@ -56,14 +55,7 @@ Before you begin, ensure you have installed:
    yarn install
    ```
 
-3. Set up environment variables:
-   Create a `.env.local` file in the root directory:
-   ```env
-   DATABASE_URL="your_mongodb_url"
-   NEXTAUTH_SECRET="your_secret"
-   NEXTAUTH_URL="http://localhost:3000"
-
-4. Start the development server:
+3. Start the development server:
    ```bash
    npm run dev
    # or
@@ -73,15 +65,36 @@ Before you begin, ensure you have installed:
 ## 🏗️ Project Structure
 
 ```
-├── app/
-│   ├── api/            # API routes
-│   ├── (auth)/        # Authentication pages
-│   ├── (dashboard)/   # Protected dashboard routes
-│   └── (marketing)/   # Public marketing pages
-├── components/        # Reusable UI components
-├── lib/              # Utility functions and configurations
-├── prisma/           # Database schema and migrations
-└── public/           # Static assets
+frontend/
+├── node_modules/
+├── public/
+└── src/
+    ├── assets/          # Static assets and images
+    ├── components/      # Reusable UI components
+    │   ├── AddCollaborator.jsx
+    │   ├── AddProject.jsx
+    │   ├── CustomNavbar.jsx
+    │   ├── DeleteProject.jsx
+    │   ├── EditProject.jsx
+    │   ├── Footer.jsx
+    │   └── Sidebar.jsx
+    ├── pages/          # Application pages
+    │   ├── Dashboard.jsx
+    │   ├── DashboardTest.jsx
+    │   ├── Landing.jsx
+    │   ├── Login.jsx
+    │   ├── Profile.jsx
+    │   └── Register.jsx
+    ├── redux/          # State management
+    │   ├── actions.js
+    │   ├── reducers.js
+    │   └── store.js
+    ├── App.css         # Global styles
+    ├── App.jsx
+    ├── index.css
+    ├── main.jsx
+    └── ProtectedRoute.jsx      
+      
 ```
 
 ## 🔒 Authentication Flow
@@ -89,9 +102,7 @@ Before you begin, ensure you have installed:
 1. Users can sign up/login using:
    - Email/Password
    - Google OAuth
-
-2. Protected routes using Next.js middleware
-3. Role-based access control for boards and workspaces
+2. Role-based access control for boards and workspaces
 
 ## 🎯 Core Functionalities
 
