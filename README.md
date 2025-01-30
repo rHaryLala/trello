@@ -1,4 +1,5 @@
 # Trello Clone
+![image](https://github.com/user-attachments/assets/802281fd-d783-4cdd-a529-57d6bb1428ef)
 
 A full-stack Trello clone built with modern web technologies. This project implements the core functionalities of Trello, allowing users to create boards, lists, and cards for effective project management and task organization.
 
