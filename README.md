@@ -141,19 +141,12 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 ## 🙏 Acknowledgments
 
 - Inspired by [Trello](https://trello.com)
-- UI Components from [shadcn/ui](https://ui.shadcn.com)
 - Icons from [Lucide](https://lucide.dev)
 
 ## 📞 Support
 
-For support, email support@yourproject.com or join our Discord channel.
-
-## 🚀 Deployment
-
-The project is configured for easy deployment on Vercel:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyourusername%2Ftrello-clone)
+For support, email rabenamanaharylala2001@gmail.com
 
 ---
 
-Made with ❤️ by [rHarylala]
+Made with ❤️ by Hary Lala
